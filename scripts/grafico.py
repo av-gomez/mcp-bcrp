@@ -1,13 +1,13 @@
-"""Dibuja grafico.png: aciertos, errores y «no sé» por modo, a partir de resultados.csv.
+"""Dibuja docs/grafico.png: aciertos, errores y «no sé» por modo, a partir de resultados.csv.
 
-    uv run grafico.py
+    uv run scripts/grafico.py
 """
 from pathlib import Path
 
 import matplotlib.pyplot as plt
 import pandas as pd
 
-AQUI = Path(__file__).parent
+AQUI = Path(__file__).parent.parent  # la raíz del proyecto
 ORDEN = ["acierta", "se equivoca", "no sabe"]
 COLORES = {"acierta": "#2a9d8f", "se equivoca": "#e76f51", "no sabe": "#9aa5b1"}
 
@@ -31,5 +31,5 @@ ax.set_title("Claude (Haiku) sin herramientas vs. con el MCP del BCRP", loc="lef
 ax.legend(ncol=3, loc="upper center", bbox_to_anchor=(0.5, -0.35), frameon=False)
 ax.spines[["top", "right"]].set_visible(False)
 fig.tight_layout()
-fig.savefig(AQUI / "grafico.png", dpi=150, bbox_inches="tight")
+fig.savefig(AQUI / "docs" / "grafico.png", dpi=150, bbox_inches="tight")
 print(tabla)

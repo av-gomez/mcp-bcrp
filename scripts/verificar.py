@@ -1,6 +1,6 @@
 """Prueba el servidor tal como lo lanza Claude Code: por stdio, con la entrada bcrp de .mcp.json.
 
-    uv run verificar.py
+    uv run scripts/verificar.py
 """
 import asyncio
 import json
@@ -8,13 +8,14 @@ from pathlib import Path
 
 from fastmcp import Client
 
-AQUI = Path(__file__).parent
+AQUI = Path(__file__).parent.parent  # la raíz del proyecto
 
 
 async def main():
-    # Solo el servidor bcrp de .mcp.json, lanzado como subproceso (uv run server.py)
+    # Solo el servidor bcrp de .mcp.json, lanzado como subproceso (uv run server.py) desde la raíz del proyecto
     config = json.loads((AQUI / ".mcp.json").read_text())
-    bcrp = {"mcpServers": {"bcrp": config["mcpServers"]["bcrp"]}}
+    servidor = config["mcpServers"]["bcrp"] | {"cwd": str(AQUI)}
+    bcrp = {"mcpServers": {"bcrp": servidor}}
     async with Client(bcrp) as c:
         # 1. Recurso: la ficha de la serie del IPC a 12 meses
         ficha = await c.read_resource("bcrp://serie/PN01273PM")

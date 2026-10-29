@@ -28,7 +28,7 @@ Las 8 primeras preguntas vienen con el proyecto; `wti_set26` e `ipc_ae_set26` so
 ## Experimento extra · sin salida fácil
 
 Quitamos de `INSTRUCCION` la frase «Si no puedes saberlo con certeza, pon valor null: no estimes.» y volvimos a correr
-(`resultados_sin_null.csv`; la corrida base quedó en `resultados_base.csv` y `resultados.csv`).
+([experimento/resultados_sin_null.csv](experimento/resultados_sin_null.csv); la corrida base quedó en [experimento/resultados_base.csv](experimento/resultados_base.csv) y en [resultados.csv](../resultados.csv)).
 
 | Modo | Acierta | Se equivoca | No sabe | Segundos promedio |
 |---|---:|---:|---:|---:|

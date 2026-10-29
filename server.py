@@ -1,4 +1,7 @@
-"""Servidor MCP del BCRP. Empiecen aquí: buscar_series ya funciona; completen los TODO hasta que pasen las pruebas.
+"""Servidor MCP con las series oficiales del Banco Central de Reserva del Perú (BCRP).
+
+Herramientas: buscar_series, serie, resumen y comparar_series. Recursos: bcrp://serie/{codigo} y bcrp://energia.
+Prompts: informe y choque_petroleo.
 
     uv run pytest                                           # el contrato: las 8 pruebas deben pasar
     uv run server.py                                        # el servidor, por stdio
@@ -83,7 +86,7 @@ def buscar_series(texto: str, frecuencia: str | None = None, limite: int = 10) -
     return [_ficha(c) for c in orden.sort_values(["vieja", "largo"]).head(limite).codigo]
 
 
-# --- TODO 1 · serie --------------------------------------------------------------------------------------------------
+# --- serie --------------------------------------------------------------------------------------------------------
 
 # Meses tal como los escribe la API: el mensual usa "Sep" y el diario "Set" para setiembre
 MESES = {"Ene": "01", "Feb": "02", "Mar": "03", "Abr": "04", "May": "05", "Jun": "06", "Jul": "07", "Ago": "08",
@@ -171,7 +174,7 @@ def serie(codigo: str, desde: str, hasta: str) -> dict:
     return _serie(codigo, desde, hasta)
 
 
-# --- TODO 2 · resumen ------------------------------------------------------------------------------------------------
+# --- resumen ------------------------------------------------------------------------------------------------------
 
 @mcp.tool(annotations=SOLO_LECTURA)
 def resumen(codigo: str, desde: str, hasta: str) -> dict:
@@ -197,7 +200,7 @@ def resumen(codigo: str, desde: str, hasta: str) -> dict:
             "fuente": s["fuente"]}
 
 
-# --- TODO 3 · comparar_series ----------------------------------------------------------------------------------------
+# --- comparar_series ----------------------------------------------------------------------------------------------
 
 def _redondear(x, cifras):
     """Redondea y cambia NaN o infinito (una serie constante o que parte de cero) por None, que sí es JSON."""
@@ -248,7 +251,7 @@ def comparar_series(codigos: list[str], desde: str, hasta: str) -> dict:
             "fuentes": {s["codigo"]: s["fuente"] for s in series}}
 
 
-# --- TODO 4 · recursos -----------------------------------------------------------------------------------------------
+# --- recursos -----------------------------------------------------------------------------------------------------
 
 # Series de energía con códigos reales encontrados con buscar_series
 ENERGIA = {"petroleo": ["PN01660XM", "PD04705XD"],
@@ -273,7 +276,7 @@ def energia() -> str:
     return json.dumps(grupos, ensure_ascii=False)
 
 
-# --- TODO 5 · prompts ------------------------------------------------------------------------------------------------
+# --- prompts ------------------------------------------------------------------------------------------------------
 
 @mcp.prompt
 def informe(tema: str) -> str:
