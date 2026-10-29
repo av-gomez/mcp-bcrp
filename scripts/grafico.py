@@ -1,4 +1,4 @@
-"""Dibuja docs/grafico.png: aciertos, errores y «no sé» por modo, a partir de resultados.csv.
+"""Dibuja grafico.png: aciertos, errores y «no sé» por modo, a partir de resultados.csv.
 
     uv run scripts/grafico.py
 """
@@ -31,5 +31,5 @@ ax.set_title("Claude (Haiku) sin herramientas vs. con el MCP del BCRP", loc="lef
 ax.legend(ncol=3, loc="upper center", bbox_to_anchor=(0.5, -0.35), frameon=False)
 ax.spines[["top", "right"]].set_visible(False)
 fig.tight_layout()
-fig.savefig(AQUI / "docs" / "grafico.png", dpi=150, bbox_inches="tight")
+fig.savefig(AQUI / "grafico.png", dpi=150, bbox_inches="tight")
 print(tabla)

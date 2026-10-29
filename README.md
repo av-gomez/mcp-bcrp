@@ -8,10 +8,10 @@ Con él, Claude deja de responder cifras de memoria y las consulta en la fuente 
 código de la serie, el periodo y la URL del BCRP, y las cuentas (variaciones, promedios, correlaciones) las hace
 Python, no el modelo.
 
-![Claude sin herramientas contra Claude con este MCP](docs/grafico.png)
+![Claude sin herramientas contra Claude con este MCP](grafico.png)
 
 En una prueba con 10 preguntas sobre cifras recientes, Claude Haiku **acertó 10 de 10 con el MCP** y ninguna sin él.
-Sin el MCP respondió «no sé» o, si no se le dejaba esa salida, inventó cifras. Detalles en [docs/informe.md](docs/informe.md).
+Sin el MCP respondió «no sé» o, si no se le dejaba esa salida, inventó cifras. Detalles en [informe.md](informe.md).
 
 ---
 
@@ -150,7 +150,7 @@ En Windows, antepón `PYTHONUTF8=1` (o en PowerShell, `$env:PYTHONUTF8=1;`) para
 | mcp | 10 | 0 | 0 | 14.7 |
 
 El análisis completo, incluido un experimento en el que Claude inventa una cifra cuando no se le permite decir
-«no sé», está en [docs/informe.md](docs/informe.md).
+«no sé», está en [informe.md](informe.md).
 
 ## Estructura del proyecto
 
@@ -161,14 +161,14 @@ mcp-bcrp/
 ├── evaluar.py             Evaluación: Claude con y sin el MCP
 ├── preguntas.csv          Preguntas de la evaluación con su cifra oficial y tolerancia
 ├── resultados.csv         Resultados de la última evaluación
+├── informe.md             Análisis de la evaluación
+├── grafico.png            Aciertos por modo
 ├── .mcp.json              Servidores MCP del proyecto (bcrp y fetch)
 ├── pyproject.toml         Dependencias (uv)
 ├── scripts/
 │   ├── verificar.py       Prueba el servidor tal como lo lanza Claude Code
-│   └── grafico.py         Genera docs/grafico.png desde resultados.csv
+│   └── grafico.py         Genera grafico.png desde resultados.csv
 ├── docs/
-│   ├── informe.md         Análisis de la evaluación
-│   ├── grafico.png        Aciertos por modo
 │   ├── verdades.md        De dónde salió cada cifra oficial nueva
 │   ├── consigna.md        Enunciado original del proyecto
 │   └── experimento/       Corridas de la evaluación con y sin la opción «no sé»
